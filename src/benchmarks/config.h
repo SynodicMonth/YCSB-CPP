@@ -18,15 +18,15 @@
 #define MAX_QUERIES 10000 // number of queries to execute
 #define QUERY_PROPORTION 0.98 // proportion of read queries, the rest are insert queries
 
-#define DISTRIBUTION DISTRIBUTION_ZIPFIAN
+#define DISTRIBUTION DISTRIBUTION_EXPONENTIAL
 
 #if DISTRIBUTION == DISTRIBUTION_ZIPFIAN
     #define ZIPFIAN_SKEW 0.99
 #elif DISTRIBUTION == DISTRIBUTION_HOTSPOT
     // p(x \in [0, HOTSPOT_PROPORTION * N)) = HOTSPOT_ALPHA
     // p(x \in [HOTSPOT_PROPORTION * N, N)) = (1 - HOTSPOT_ALPHA)
-    #define HOTSPOT_PROPORTION 0.2
-    #define HOTSPOT_ALPHA 0.8
+    #define HOTSPOT_PROPORTION 0.1
+    #define HOTSPOT_ALPHA 0.9
 #elif DISTRIBUTION == DISTRIBUTION_EXPONENTIAL
     #define EXPONENTIAL_LAMBDA 0.1
 #endif

@@ -61,6 +61,13 @@ int main(int argc, char* argv[]) {
     }
 
     if (do_run) {
+        #if BACKEND == LevelDBBackend
+            // LevelDBBackend does not support multiple threads
+            if (num_threads > 1) {
+                std::cout << "LevelDBBackend does not support multiple threads" << std::endl;
+                return 1;
+            }
+        #endif
         g_next_insert_key = MAX_RECORDS;
         std::vector<std::thread> threads;
         for (int i = 0; i < num_threads; i++) {
